@@ -1,0 +1,47 @@
+{
+	"name": "postcss-split-value",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Matt Newman",
+	"license": "ISC",
+	"main": "dist/main.js",
+	"scripts": {
+		"build": "babel src --out-dir dist -s inline",
+		"test": "ava",
+		"dev": "run-p 'build -- -w' 'test -- -w'",
+		"ci": "nyc --reporter=lcov ava",
+		"prepare": "run-s build test"
+	},
+	"ava": {
+		"verbose": true,
+		"files": [
+			"test/*.js"
+		]
+	},
+	"keywords": [
+		"postcss-plugin",
+		"postcss",
+		"plugin",
+		"value",
+		"theme",
+		"split"
+	],
+	"devDependencies": {
+		"ava": "^0.22.0",
+		"babel-cli": "^6.26.0",
+		"babel-plugin-add-module-exports": "^0.2.1",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-preset-env": "^1.6.0",
+		"babel-register": "^6.26.0",
+		"npm-run-all": "^4.1.1",
+		"nyc": "^11.2.1",
+		"shelljs": "^0.7.8",
+		"tempy": "^0.2.1"
+	},
+	"dependencies": {
+		"babel-polyfill": "^6.26.0",
+		"babel-runtime": "^6.26.0",
+		"postcss": "6.0.13"
+	}
+}
