@@ -19,12 +19,10 @@ export const matchAny = ( arr, str ) => {
 export const createUpdaterFn = containers => rule => {
 	const declsToRemove = [];
 
-	containers.forEach(( { skip, match, result, fd } ) => {
+	containers.forEach(( { skip, match, result } ) => {
 		if ( matchAny(skip, rule) ) {
 			return;
 		}
-
-		fd++;
 
 		let clone = rule.clone();
 		clone.removeAll();
