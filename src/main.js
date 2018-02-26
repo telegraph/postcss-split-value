@@ -1,7 +1,5 @@
 import 'babel-polyfill';
 import postcss from 'postcss';
-import fs from 'fs';
-import ss from 'stream-stream';
 import { join } from 'path';
 import { write } from './lib/io';
 import { processOptions } from './lib/options';
@@ -26,20 +24,7 @@ const plugin = postcss.plugin('postcss-split-value', options => {
 				const { outpath = options.outpath, name, result, files } = container;
 				const file = join(outpath, name);
 				return write(file, result.toString(), { flags: 'a' });
-			}),
-
-			// containers.map(container => {
-			// 	const { outpath = options.outpath, name, result, files } = container;
-			// 	const baseFile = join(outpath, name);
-			// 	const ws = fs.createWriteStream(baseFile, { flags: 'a' });
-			// 	const stream = ss();
-			//
-			// 	files.forEach( file => {
-			// 		stream.write(fs.createReadStream(file));
-			// 	});
-			// 	stream.end();
-			// 	stream.pipe(ws);
-			// })
+			})
 		)
 
 	}
