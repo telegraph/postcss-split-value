@@ -1,7 +1,7 @@
 import postcss from 'postcss';
 
 export const createContainer = option => {
-	return { ...option, result: postcss.root() };
+	return { ...option, result: postcss.root(), files: [] };
 };
 
 export const matchAll = ( arr, str ) => {
@@ -19,10 +19,12 @@ export const matchAny = ( arr, str ) => {
 export const createUpdaterFn = containers => rule => {
 	const declsToRemove = [];
 
-	containers.forEach(( { skip, match, result } ) => {
+	containers.forEach(( { skip, match, result, fd } ) => {
 		if ( matchAny(skip, rule) ) {
 			return;
 		}
+
+		fd++;
 
 		let clone = rule.clone();
 		clone.removeAll();

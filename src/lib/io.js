@@ -1,9 +1,8 @@
-import path from 'path';
-import { readFile, writeFile } from 'fs';
+import fs from 'fs';
 
 export const read = ( filePath ) => {
 	return new Promise(( resolve, reject ) => {
-		readFile(filePath, 'utf-8', ( err, fileContents ) => {
+		fs.readFile(filePath, 'utf-8', ( err, fileContents ) => {
 			if ( err ) {
 				reject(err);
 			}
@@ -12,13 +11,16 @@ export const read = ( filePath ) => {
 	});
 };
 
-export const write = ( filePath, fileContents ) => {
+export const write = ( filePath, fileContents, options ) => {
 	return new Promise(( resolve, reject ) => {
-		writeFile(filePath, fileContents, ( err ) => {
-			if ( err ) {
-				reject(err);
-			}
-			resolve(fileContents);
+		// use {'flags': 'a'} to append and {'flags': 'w'} to erase and write a new file
+		let ws = fs.createWriteStream(filePath, options);
+		ws.write(fileContents);
+		ws.end();
+		ws.on('finish', () => {
+			resolve();
 		});
+		ws.on('error', reject);
 	});
 };
+

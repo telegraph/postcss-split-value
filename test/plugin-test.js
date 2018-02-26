@@ -2,7 +2,7 @@ import test from 'ava';
 import postcss from 'postcss';
 import tempy from 'tempy';
 import splitValue from '../dist/main';
-import { existsSync as fileExists } from 'fs';
+import { existsSync as fileExists, readdirSync } from 'fs';
 import { exec } from 'shelljs';
 import { read, write } from '../dist/lib/io';
 
@@ -41,6 +41,13 @@ test('it only captures matching properties', async t => {
 	await postcss([splitValue(opts)]).process(CSS);
 
 	const output = await read(`${dir}/output.css`);
+
+	// debugging help code
+	// const files = await readdirSync(dir, {});
+	// const output2 = await read(`${dir}/output.0.css`);
+	// console.log('\naz:', files);
+	// console.log('\nbz:', output);
+	// console.log('\ncz:', output2);
 
 	t.true(output.includes('.test-value-1'));
 	t.false(output.includes('border-width'));
