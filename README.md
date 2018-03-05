@@ -32,12 +32,10 @@ using this package in config:
 module.exports = {
 	plugins: [
 		require('postcss-split-value')({
-		    outpath: dist/temp,
             files: [{
-                name: 'outputFile1.css',
-                match: [
-                    /var\(--value-1/
-                ]
+                match: /var\(--value-1/,
+                target: /#does-not-exist/i,
+                remove: true
             }]
         })
     ],
