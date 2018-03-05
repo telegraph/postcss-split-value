@@ -10,8 +10,10 @@ npm run dev
 
 ```
 
-## Using it somewhere else
+## Using it another project (locally)
 (e.g: telegraph-component)
+
+Doing the following will allow the project referencing this to get changes as you make them here, this is really powerful when you combine it with `npm run dev`
 
 from this project's cwd:
 ```
