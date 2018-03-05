@@ -1,3 +1,7 @@
+.no-match-rule {
+    z-index: auto;
+}
+
 :root {
     --value-1: 11;
     --value-2: 22;

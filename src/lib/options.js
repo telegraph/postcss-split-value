@@ -6,6 +6,8 @@ export const processOptions = ( options = {} ) => {
 	options.files.forEach(file => {
 		file.match = castToArray(file.match);
 		file.skip = castToArray(file.skip);
+		file.target = castToArray(file.target);
+		file.remove = !!file.remove;
 	});
 	return options;
 };

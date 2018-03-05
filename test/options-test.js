@@ -42,3 +42,22 @@ test('`files.skip` cast to an array', t => {
   });
   t.true(Array.isArray(options.files[0].skip));
 });
+
+test('`files.target` cast to an array', t => {
+	const options = processOptions({
+		outpath: tempy.directory(),
+		files: [{
+			target: /some-regex/i
+		}]
+	});
+	t.true(Array.isArray(options.files[0].target));
+});
+
+test('`files.remove` can be set', t => {
+	const options = processOptions({
+		files: [{
+			remove: true
+		}]
+	});
+	t.is(options.files[0].remove, true);
+});
