@@ -42,6 +42,6 @@
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
 		"babel-runtime": "^6.26.0",
-		"postcss": "6.0.13"
+		"postcss": "6.0.23"
 	}
 }
